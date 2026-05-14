@@ -1,3 +1,20 @@
+math.randomseed(os.time())
+
+local pokemons = {
+  "kyogre",
+  "gardevoir",
+  "rayquaza",
+  "groudon",
+  "goodra",
+  "metagross",
+  "dialga",
+  "zygarde",
+}
+
+local function random_pokemon()
+  return pokemons[math.random(#pokemons)]
+end
+
 return {
   "folke/snacks.nvim",
   opts = {
@@ -72,7 +89,7 @@ return {
         { section = "startup" },
         {
           section = "terminal",
-          cmd = "pokemon-colorscripts -n kyogre; sleep .1",
+          cmd = "pokemon-colorscripts -n " .. random_pokemon() .. "; sleep .1",
           random = nil,
           pane = 2,
           indent = 2,
