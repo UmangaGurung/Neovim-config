@@ -10,6 +10,9 @@ return {
         "impl",
         "golangci-lint",
         "delve",
+        --java
+        "java-debug-adapter",
+        "java-test",
       },
     },
   },
