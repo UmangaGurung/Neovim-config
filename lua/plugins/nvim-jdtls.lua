@@ -1,8 +1,8 @@
+local java_filetypes = { "java" }
 return {
   {
     "mfussenegger/nvim-jdtls",
     dependencies = { "folke/which-key.nvim" },
-    --add autocmd
     ft = java_filetypes,
     opts = function()
       local mason_bin = vim.fn.stdpath("data") .. "/mason/bin/jdtls"
@@ -36,16 +36,16 @@ return {
           local fname = vim.api.nvim_buf_get_name(0)
           local root_dir = opts.root_dir(fname)
           local project_name = opts.project_name(root_dir)
-          local cmd = vim.deepcopy(opts.cmd)
+          local jdtls_cmd = vim.deepcopy(opts.cmd)
           if project_name then
-            vim.list_extend(cmd, {
+            vim.list_extend(jdtls_cmd, {
               "-configuration",
               opts.jdtls_config_dir(project_name),
               "-data",
               opts.jdtls_workspace_dir(project_name),
             })
           end
-          return cmd
+          return jdtls_cmd
         end,
 
         -- These depend on nvim-dap, but can additionally be disabled by setting false here.
@@ -79,6 +79,14 @@ return {
         end
       end
       local function attach_jdtls()
+        -- if not vim.tbl_contains({ "java" }, vim.bo.filetype) then
+        --   return
+        -- end
+        --
+        -- if vim.api.nvim_buf_get_name(0) == "" then
+        --   return
+        -- end
+
         local fname = vim.api.nvim_buf_get_name(0)
 
         -- Configuration can be augmented and overridden by opts.jdtls
@@ -90,6 +98,9 @@ return {
           },
           settings = opts.settings,
           -- enable CMP capabilities
+          --
+
+          --
           capabilities = LazyVim.has("blink.cmp") and require("blink.cmp").get_lsp_capabilities() or LazyVim.has(
             "cmp-nvim-lsp"
           ) and require("cmp_nvim_lsp").default_capabilities() or nil,
