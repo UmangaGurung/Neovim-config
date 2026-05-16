@@ -78,6 +78,11 @@ return {
           end
         end
       end
+
+      --if LazyVim.has("spring-boot.nvim") then
+      vim.list_extend(bundles, require("spring_boot").java_extensions())
+      --end
+
       local function attach_jdtls()
         -- if not vim.tbl_contains({ "java" }, vim.bo.filetype) then
         --   return

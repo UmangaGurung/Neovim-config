@@ -13,6 +13,7 @@ return {
         --java
         "java-debug-adapter",
         "java-test",
+        "vscode-spring-boot-tools",
       },
     },
   },
