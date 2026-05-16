@@ -24,16 +24,16 @@ return {
 
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
-        providers = {
-          snippets = {
-            opts = {
-              friendly_snippets = true,
-              extended_filetypes = {
-                lua = { "lua" },
-              },
-            },
-          },
-        },
+        -- providers = {
+        --   snippets = {
+        --     opts = {
+        --       friendly_snippets = true,
+        --       extended_filetypes = {
+        --         lua = { "lua" },
+        --       },
+        --     },
+        --   },
+        -- },
       },
 
       fuzzy = { implementation = "prefer_rust_with_warning" },
